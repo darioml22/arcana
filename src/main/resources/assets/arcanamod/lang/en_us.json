@@ -1,7 +1,7 @@
 {
-  "itemGroup.arcanamod": "Example Mod Tab",
-  "block.arcanamod.example_block": "Example Block",
-  "item.arcanamod.example_item": "Example Item",
+  "itemGroup.arcanamod": "Arcana",
+  "block.arcanamod.wand_tinker_table": "Wand tinker table",
+  "item.arcanamod.wand": "Wand",
 
   "arcanamod.configuration.title": "Arcana mod Configs",
   "arcanamod.configuration.section.arcanamod.common.toml": "Arcana mod Configs",

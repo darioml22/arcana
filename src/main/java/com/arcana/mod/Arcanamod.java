@@ -39,18 +39,21 @@ public class Arcanamod {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(MODID);
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MODID);
 
-    public static final DeferredBlock<Block> EXAMPLE_BLOCK = BLOCKS.registerSimpleBlock("example_block", p -> p.mapColor(MapColor.STONE));
-    public static final DeferredItem<BlockItem> EXAMPLE_BLOCK_ITEM = ITEMS.registerSimpleBlockItem("example_block", EXAMPLE_BLOCK);
+    public static final DeferredBlock<Block> WAND_TINKER_TABLE = BLOCKS.registerSimpleBlock("wand_tinker_table", p -> p.mapColor(MapColor.STONE));
+    public static final DeferredItem<BlockItem> WAND_TINKER_TABLE_ITEM = ITEMS.registerSimpleBlockItem("wand_tinker_table", WAND_TINKER_TABLE);
 
-    public static final DeferredItem<Item> EXAMPLE_ITEM = ITEMS.registerSimpleItem("example_item", p -> p.food(new FoodProperties.Builder()
-            .alwaysEdible().nutrition(1).saturationModifier(2f).build()));
+    public static final DeferredItem<Item> WAND = ITEMS.registerSimpleItem(
+        "wand", 
+        p -> p
+        );
 
-    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> EXAMPLE_TAB = CREATIVE_MODE_TABS.register("example_tab", () -> CreativeModeTab.builder()
+    public static final DeferredHolder<CreativeModeTab, CreativeModeTab> MAIN_TAB = CREATIVE_MODE_TABS.register("main_tab", () -> CreativeModeTab.builder()
             .title(Component.translatable("itemGroup.arcanamod")) 
             .withTabsBefore(CreativeModeTabs.COMBAT)
-            .icon(() -> EXAMPLE_ITEM.get().getDefaultInstance())
+            .icon(() -> WAND.get().getDefaultInstance())
             .displayItems((parameters, output) -> {
-                output.accept(EXAMPLE_ITEM.get());
+                output.accept(WAND.get());
+                output.accept(WAND_TINKER_TABLE.get());
             }).build());
 
     public Arcanamod(IEventBus modEventBus, ModContainer modContainer) {
@@ -81,7 +84,7 @@ public class Arcanamod {
 
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
-            event.accept(EXAMPLE_BLOCK_ITEM);
+            event.accept(WAND_TINKER_TABLE_ITEM);
         }
     }
 
