@@ -1,31 +1,36 @@
-public class Card extends Item {
+package com.arcana.mod.card;
+
+import net.minecraft.world.item.Item;
+
+public abstract class Card extends Item {
+    public enum Type {
+        EFFECT,
+        LOGIC,
+        MOD
+    }
 
     private final Type cardType;
     private final String cardName;
     private final String cardDescription;
     private final int textureIndex; //not sure how this works
 
-
-    public CardItem(
-            Properties properties,
-            Enum<Type> cardType,
+    public Card(
+            Item.Properties properties,
+            Type cardType,
             String cardName,
             String cardDescription,
             int textureIndex
     ) {
         super(properties);
-
         this.cardType = cardType;
         this.cardName = cardName;
         this.cardDescription = cardDescription;
         this.textureIndex = textureIndex;
-    }  
-
-    public String execute() {
-        
     }
-    
-    public String getCardType() {
+
+    public abstract String execute();
+
+    public Type getCardType() {
         return cardType;
     }
 
