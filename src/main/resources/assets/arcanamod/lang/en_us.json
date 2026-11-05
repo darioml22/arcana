@@ -1,0 +1,13 @@
+{
+  "itemGroup.arcanamod": "Arcana",
+  "block.arcanamod.wand_tinker_table": "Wand tinker table",
+  "item.arcanamod.wand": "Wand",
+
+  "arcanamod.configuration.title": "Arcana mod Configs",
+  "arcanamod.configuration.section.arcanamod.common.toml": "Arcana mod Configs",
+  "arcanamod.configuration.section.arcanamod.common.toml.title": "Arcana mod Configs",
+  "arcanamod.configuration.items": "Item List",
+  "arcanamod.configuration.logDirtBlock": "Log Dirt Block",
+  "arcanamod.configuration.magicNumberIntroduction": "Magic Number Text",
+  "arcanamod.configuration.magicNumber": "Magic Number"
+}
