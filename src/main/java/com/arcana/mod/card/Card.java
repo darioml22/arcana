@@ -1,5 +1,9 @@
 package com.arcana.mod.card;
 
+import java.util.Stack;
+
+import com.arcana.mod.engine.ExecutionContext;
+
 import net.minecraft.world.item.Item;
 
 public abstract class Card extends Item {
@@ -12,7 +16,7 @@ public abstract class Card extends Item {
     private final Type cardType;
     private final String cardName;
     private final String cardDescription;
-    private final int textureIndex; //not sure how this works
+    private final int textureIndex;
 
     public Card(
             Item.Properties properties,
@@ -28,21 +32,10 @@ public abstract class Card extends Item {
         this.textureIndex = textureIndex;
     }
 
-    public abstract String execute();
+    public abstract boolean execute(ExecutionContext context, Stack<Card> modStack, Integer effectCredits);
 
-    public Type getCardType() {
-        return cardType;
-    }
-
-    public String getCardName() {
-        return cardName;
-    }
-
-    public String getDescription() {
-        return cardDescription;
-    }
-
-    public int getTextureIndex() {
-        return textureIndex;
-    }
+    public Type getCardType() { return cardType; }
+    public String getCardName() { return cardName; }
+    public String getDescription() { return cardDescription; }
+    public int getTextureIndex() { return textureIndex; }
 }

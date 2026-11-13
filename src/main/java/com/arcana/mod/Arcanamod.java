@@ -3,6 +3,8 @@ package com.arcana.mod;
 import com.arcana.mod.item.WandItem;
 import com.arcana.mod.registry.ModBlocks;
 import com.arcana.mod.registry.ModBlockEntities;
+import com.arcana.mod.registry.ModCards;
+import com.arcana.mod.engine.ExecutionContext;
 
 import org.slf4j.Logger;
 
@@ -65,6 +67,7 @@ public class Arcanamod {
         CREATIVE_MODE_TABS.register(modEventBus);
         ModDataComponents.COMPONENTS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
+        ModCards.CARDS.register(modEventBus);
 
         NeoForge.EVENT_BUS.register(this);
 

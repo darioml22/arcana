@@ -1,6 +1,8 @@
 package com.arcana.mod.engine;
 import java.util.ArrayList;
 import com.arcana.mod.card.Card;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.Level;
 
 public class ExecutionContext {
     private ArrayList<Card> cards; // List of cards to be executed
@@ -9,6 +11,8 @@ public class ExecutionContext {
     // TODO: Wand context (current stats like mana, cooldown, etc.)
     // TODO: Implement minecraft context (current world state, player state, etc.)
     // TODO: Implement caster context (entity casting the spell, their stats, position, etc.)
+    private Level level;
+    private LivingEntity caster;
 
     public int getFocus() {
         return focus;
@@ -56,6 +60,8 @@ public class ExecutionContext {
 
     public ExecutionContext() {
         this.cards = new ArrayList<>();
+        this.level = level;
+        this.caster = caster; 
     }
 
     public void addCard(Card card, Integer index) {
@@ -95,4 +101,7 @@ public class ExecutionContext {
     public boolean hasCards() {
         return !cards.isEmpty();
     }
+
+    public Level level() { return level; }
+    public LivingEntity caster() { return caster; }
 }

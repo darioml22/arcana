@@ -1,28 +1,26 @@
 package com.arcana.mod.card;
 
+import java.util.List;
+import java.util.Stack;
+
+import com.arcana.mod.engine.ExecutionContext;
+
 import net.minecraft.world.item.Item;
 
 public class ModCard extends Card {
-    private final int spellId;
+    private final List<StatChange> changes;
 
-    public ModCard(
-            Item.Properties properties,
-            int spellId,
-            Type cardType,
-            String cardName,
-            String cardDescription,
-            int textureIndex
-    ) {
-        super(properties, cardType, cardName, cardDescription, textureIndex);
-        this.spellId = spellId;
+    public ModCard(Item.Properties properties, String cardName, String cardDescription,
+                   int textureIndex, List<StatChange> changes) {
+        super(properties, Type.MOD, cardName, cardDescription, textureIndex);
+        this.changes = List.copyOf(changes);
     }
 
     @Override
-    public String execute() {
-        return "Mod card executed: " + getCardName();
+    public boolean execute(ExecutionContext context, Stack<Card> modStack, Integer effectCredits) {
+        modStack.push(this);  
+        return true;
     }
 
-    public int getSpellId() {
-        return spellId;
-    }
+    public List<StatChange> getChanges() { return changes; }
 }

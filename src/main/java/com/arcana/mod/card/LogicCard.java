@@ -1,28 +1,19 @@
 package com.arcana.mod.card;
 
+import java.util.Stack;
+
+import com.arcana.mod.engine.ExecutionContext;
+
 import net.minecraft.world.item.Item;
 
 public class LogicCard extends Card {
-    private final int spellId;
-
-    public LogicCard(
-            Item.Properties properties,
-            int spellId,
-            Type cardType,
-            String cardName,
-            String cardDescription,
-            int textureIndex
-    ) {
-        super(properties, cardType, cardName, cardDescription, textureIndex);
-        this.spellId = spellId;
+    public LogicCard(Item.Properties properties, String cardName,
+                     String cardDescription, int textureIndex) {
+        super(properties, Type.LOGIC, cardName, cardDescription, textureIndex);
     }
 
     @Override
-    public String execute() {
-        return "Logic Card executed: " + getCardName();
-    }
-
-    public int getSpellId() {
-        return spellId;
+    public boolean execute(ExecutionContext context, Stack<Card> modStack, Integer effectCredits) {
+        return true;
     }
 }
