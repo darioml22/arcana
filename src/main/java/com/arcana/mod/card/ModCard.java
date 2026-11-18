@@ -1,7 +1,6 @@
 package com.arcana.mod.card;
 
 import java.util.List;
-import java.util.Stack;
 
 import com.arcana.mod.engine.ExecutionContext;
 
@@ -11,14 +10,15 @@ public class ModCard extends Card {
     private final List<StatChange> changes;
 
     public ModCard(Item.Properties properties, String cardName, String cardDescription,
-                   int textureIndex, List<StatChange> changes) {
-        super(properties, Type.MOD, cardName, cardDescription, textureIndex);
+                   int textureIndex, float manaCost, List<StatChange> changes) {
+        super(properties, Type.MOD, cardName, cardDescription, textureIndex, manaCost);
         this.changes = List.copyOf(changes);
     }
 
+    // Modifiers never act on their own: they wait in the stack for the next effect card.
     @Override
-    public boolean execute(ExecutionContext context, Stack<Card> modStack, Integer effectCredits) {
-        modStack.push(this);  
+    public boolean execute(ExecutionContext context) {
+        context.pushModifier(this);
         return true;
     }
 

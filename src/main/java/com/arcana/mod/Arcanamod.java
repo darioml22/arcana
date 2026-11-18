@@ -1,10 +1,13 @@
 package com.arcana.mod;
 
+import com.arcana.mod.command.ArcanaCommands;
+import com.arcana.mod.debug.SpellEngineGameTests;
 import com.arcana.mod.item.WandItem;
 import com.arcana.mod.registry.ModBlocks;
 import com.arcana.mod.registry.ModBlockEntities;
 import com.arcana.mod.registry.ModCards;
-import com.arcana.mod.engine.ExecutionContext;
+import com.arcana.mod.registry.ModEntities;
+import com.arcana.mod.wand.WandData;
 
 import org.slf4j.Logger;
 
@@ -56,6 +59,8 @@ public class Arcanamod {
                     .icon(() -> WAND.get().getDefaultInstance())
                     .displayItems((parameters, output) -> {
                         output.accept(WAND.get());
+                        WandData.presets().forEach(output::accept);
+                        ModCards.all().forEach(output::accept);
                         output.accept(ARCANA_TABLE_ITEM.get());
                     }).build());
 
@@ -68,8 +73,12 @@ public class Arcanamod {
         ModDataComponents.COMPONENTS.register(modEventBus);
         ModBlockEntities.BLOCK_ENTITY_TYPES.register(modEventBus);
         ModCards.CARDS.register(modEventBus);
+        ModEntities.ENTITY_TYPES.register(modEventBus);
+        SpellEngineGameTests.TEST_FUNCTIONS.register(modEventBus);
+        modEventBus.addListener(SpellEngineGameTests::registerTests);
 
         NeoForge.EVENT_BUS.register(this);
+        NeoForge.EVENT_BUS.addListener(ArcanaCommands::register);
 
         modEventBus.addListener(this::addCreative);
 

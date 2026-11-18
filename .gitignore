@@ -32,3 +32,6 @@ run/
 **/src/generated/**/.cache/
 repo/
 !**/src/**/repo/
+
+# Local Claude Code notes
+CLAUDE.md
