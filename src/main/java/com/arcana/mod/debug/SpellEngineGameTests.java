@@ -144,6 +144,12 @@ public final class SpellEngineGameTests {
             helper.assertTrue(focus == expectedFocus, where + "expected focus " + expectedFocus + " but got " + focus + trace);
             helper.assertTrue(reversed == expectedReversed, where + "expected reversed=" + expectedReversed + trace);
             helper.assertTrue(Math.abs(mana - expectedMana) < 0.01F, where + "expected mana " + expectedMana + " but got " + mana + trace);
+
+            Arcanamod.LOGGER.info("[spell test] {}{} -> focus {}{}, mana {}", where, result, focus,
+                    reversed ? " (reversed)" : "", Card.formatMana(mana));
+            for (String line : ctx.getTrace()) {
+                Arcanamod.LOGGER.info("[spell test]     {}", line);
+            }
         }
 
         private String describe() {
